@@ -1,0 +1,24 @@
+{
+  "name": "calculadora-iblue-desafio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --responsive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grodriguesADS/calculadora-Iblue-Desafio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grodriguesADS/calculadora-Iblue-Desafio/issues"
+  },
+  "homepage": "https://github.com/grodriguesADS/calculadora-Iblue-Desafio#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mocha": "^10.0.0"
+  }
+}
