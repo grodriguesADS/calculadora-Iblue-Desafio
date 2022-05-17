@@ -44,4 +44,10 @@ describe('Teste da função divisão:', function () {
             assert.equal(retornarResultadoDoisParametrosFlutuantes, 4);
         })
     })
+    describe('8° teste: Dois parametros retornando uma dizima periodica', function () {
+        it('Recebendo dois parametros que retornam dizima', async function () {
+            const retornarResultadoDoisParametrosComDizima = await functionDivision(2, 3);
+            assert.equal(retornarResultadoDoisParametrosComDizima, 0.6667);
+        })
+    })
 })
