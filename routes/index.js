@@ -13,6 +13,10 @@ router.post('/mult', calculadoraController.multiplicacao);
 
 router.post('/div', calculadoraController.divisao);
 
+router.post('/raiz', calculadoraController.raizQuadrada);
+
+router.post('/porc', calculadoraController.porcentagem);
+
 
 
 module.exports = router;

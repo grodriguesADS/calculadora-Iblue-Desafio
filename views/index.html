@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-image: linear-gradient(45deg, black, crimson);
+            height: 100vh;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .calculadora {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .botao {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            margin: 3px;
+            background-color: rgb(31, 31, 31);
+            border: none;
+            color: #fff;
+        }
+
+        .botao:hover {
+            background-color: black;
+        }
+
+        #resultado {
+            background-color: white;
+            width: 207px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fundo">
+        <h1>Calculadora Raiz</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button class="botao" onclick="clean()">C</button></td>
+                    <td><button class="botao" onclick="back()"><</button></td>
+                    <td><button class="botao" onclick="insert('/')">/</button></td>
+                    <td><button class="botao" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="calculate('http://localhost:3000/sum')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        var corpo = {
+            "numeroUm": 0,
+            "numeroDois":0
+        }
+        var primeiraOperacao = '';
+        var segundaOperacao = '';
+        var resultadoOperacao = '';
+        var urlOperacao = '';
+
+
+        function insert(num) {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+        function clean() {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function back() {
+            var resultadoDisplay = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultadoDisplay.substring(0, resultadoDisplay.length - 1);
+        }
+        function calcular() {
+            var resultadoDisplay = document.getElementById('resultado').innerHTML;
+            
+            console.log(resultadoDisplay);
+
+            if (resultadoDisplay) {
+                document.getElementById('resultado').innerHTML = resultadoDisplay;
+            }
+            else {
+                document.getElementById('resultado').innerHTML = "Nada..."
+            }
+        }
+        function fazPost(url, body) {
+            console.log("Body=", body)
+            let request = new XMLHttpRequest()
+            request.open("POST", url, true)
+            request.setRequestHeader("Content-type", "application/json")
+            request.send(JSON.stringify(body))
+            request.onload = function () {
+                console.log(this.responseText)
+                }
+            return request.responseText
+        }
+
+        function operacaoUrl(url) {
+            urlOperacao = url;
+        }
+
+        function calculate(operacao) {
+    const valorDoDisplay = document.getElementById('result').innerHTML;
+    if(operacao != "=" ){ 
+        if(op1 == ""){
+            numeral1 = valorDoDisplay;
+            op1 = operacao ;
+            document.getElementById('result').innerHTML = "";
+            console.log("Valor 1",numeral1 + op1);
+        }else{
+            numeral2 = valorDoDisplay;
+            op2 = operacao ;
+            document.getElementById('result').innerHTML = "";
+            //Test de console
+            console.log("Valor 2",numeral1 + op1);
+
+            numeral1 = calc(numeral1, op1, numeral2);
+            op1 = op2;
+            numeral2 = "";
+            document.getElementById('result').innerHTML = "";
+            //Test de console
+            console.log("Valor 1",numeral1 + op1);
+        }
+
+    }
+    if(operacao == "="){
+        numeral2 = valorDoDisplay;
+        resultado = calc(numeral1, op1, numeral2);
+        document.getElementById('result').innerHTML = resultado;
+        //Test de console
+        console.log("resultado",calc(numeral1, op1, numeral2));
+        numeral1 = resultado;
+        op1 = "";
+       numeral2 = "";
+        op2 = "";
+
+    }
+}
+    </script>
+</body>
+
+</html>
