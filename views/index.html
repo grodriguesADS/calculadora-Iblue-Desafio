@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
         * {
             margin: 0;
             padding: 0;
         }
 
+        .titulo{
+            transform: rotate(45deg);
+        }
         .fundo {
-            background-image: linear-gradient(45deg, black, crimson);
+            background-color: #ff9053;
             height: 100vh;
             color: #fff;
             font-family: Arial, Helvetica, sans-serif;
@@ -46,7 +50,7 @@
 
         #resultado {
             background-color: white;
-            width: 207px;
+            width: 155px;
             height: 30px;
             margin: 5px;
             font-size: 25px;
@@ -54,82 +58,177 @@
             text-align: right;
             padding: 5px;
         }
+        .mostrador{
+            display: flex;
+        }@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .titulo{
+            transform: rotate(45deg);
+        }
+        .fundo {
+            background-color: #ff9053;
+            height: 100vh;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .calculadora {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .botao {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            margin: 3px;
+            background-color: rgb(31, 31, 31);
+            border: none;
+            color: #fff;
+        }
+
+        .botao:hover {
+            background-color: black;
+        }
+
+        #resultado {
+            background-color: white;
+            width: 155px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+        }
+        .mostrador{
+            display: flex;
+        }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="fundo">
-        <h1>Calculadora Raiz</h1>
+        <div class="titulo">
+            <i class="fa-solid fa-3"></i>
+        </div>
         <div class="calculadora">
             <h1>Calculadora</h1>
+           <div class="mostrador">
             <p id="resultado"></p>
+            <td><button class="botao" onclick="back()"><</button></td>
+           </div>
+            
             <table>
                 <tr>
                     <td><button class="botao" onclick="clean()">C</button></td>
-                    <td><button class="botao" onclick="back()"><</button></td>
-                    <td><button class="botao" onclick="insert('/')">/</button></td>
-                    <td><button class="botao" onclick="insert('*')">X</button></td>
+                    <td><button class="botao" onclick="insert('/' , 'http://localhost:3000/div')">/</button></td>
+                    <td><button class="botao" onclick="insert('*' , 'http://localhost:3000/mult')">X</button></td>
+                    <td><button class="botao" onclick="insert('%', 'http://localhost:3000/porc')">%</button></td>
                 </tr>
                 <tr>
                     <td><button class="botao" onclick="insert('7')">7</button></td>
                     <td><button class="botao" onclick="insert('8')">8</button></td>
                     <td><button class="botao" onclick="insert('9')">9</button></td>
-                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                    <td><button class="botao" onclick="insert('-', 'http://localhost:3000/sub')">-</button></td>
                 </tr>
                 <tr>
                     <td><button class="botao" onclick="insert('4')">4</button></td>
                     <td><button class="botao" onclick="insert('5')">5</button></td>
                     <td><button class="botao" onclick="insert('6')">6</button></td>
-                    <td><button class="botao" onclick="calculate('http://localhost:3000/sum')">+</button></td>
+                    <td><button class="botao" onclick="insert('+' , 'http://localhost:3000/sum')">+</button></td>
+
+            
                 </tr>
                 <tr>
                     <td><button class="botao" onclick="insert('1')">1</button></td>
                     <td><button class="botao" onclick="insert('2')">2</button></td>
                     <td><button class="botao" onclick="insert('3')">3</button></td>
-                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                    <td><button class="botao" onclick="insert('√', 'http://localhost:3000/raiz')">√</button></td>
+                   
+
                 </tr>
                 <tr>
                     <td colspan="2"><button class="botao" style="width: 106px;" onclick="insert('0')">0</button></td>
                     <td><button class="botao" onclick="insert('.')">.</button></td>
+                    <td><button class="botao" onclick="calcular()">=</button></td>
                 </tr>
             </table>
         </div>
     </div>
     <script>
         var corpo = {
-            "numeroUm": 0,
-            "numeroDois":0
+            'numeroUm': '',
+            'numeroDois': ''
         }
-        var primeiraOperacao = '';
-        var segundaOperacao = '';
-        var resultadoOperacao = '';
-        var urlOperacao = '';
+
+        var operacoes = [];
+        var resultadoPost = '';
 
 
-        function insert(num) {
+         function insert(num, rota)
+        {
             var numero = document.getElementById('resultado').innerHTML;
             document.getElementById('resultado').innerHTML = numero + num;
-        }
-        function clean() {
-            document.getElementById('resultado').innerHTML = "";
-        }
-        function back() {
-            var resultadoDisplay = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultadoDisplay.substring(0, resultadoDisplay.length - 1);
-        }
-        function calcular() {
-            var resultadoDisplay = document.getElementById('resultado').innerHTML;
-            
-            console.log(resultadoDisplay);
 
-            if (resultadoDisplay) {
-                document.getElementById('resultado').innerHTML = resultadoDisplay;
-            }
-            else {
-                document.getElementById('resultado').innerHTML = "Nada..."
+            if (rota) {
+                operacoes.push(rota);
             }
         }
-        function fazPost(url, body) {
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+            corpo = {
+            'numeroUm': '',
+            'numeroDois': ''
+            }
+            operacoes = [];
+            resultadoPost = '';
+
+        }
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            var valor = '';
+            
+           
+            for (var i = 0 ; i < resultado.length; i++) {
+                var indice = resultado.charAt(i)
+                console.log(indice)
+                console.log(isDigito(indice))
+                if(isDigito(indice) === true) {
+                    valor += indice;
+                }
+                else {
+                    corpo.numeroUm = valor
+                    valor = ''
+                }
+                corpo.numeroDois = valor;
+            }
+
+            mandarOperacao(operacoes[0], corpo);  
+            operacoes.pop(0);
+
+
+        }
+        function mandarOperacao(url, body) {
             console.log("Body=", body)
             let request = new XMLHttpRequest()
             request.open("POST", url, true)
@@ -137,51 +236,15 @@
             request.send(JSON.stringify(body))
             request.onload = function () {
                 console.log(this.responseText)
+                resultadoPost = this.responseText
+                document.getElementById('resultado').innerHTML = resultadoPost;
+                console.log(resultadoPost)
                 }
-            return request.responseText
+                return request.responseText;
         }
-
-        function operacaoUrl(url) {
-            urlOperacao = url;
-        }
-
-        function calculate(operacao) {
-    const valorDoDisplay = document.getElementById('result').innerHTML;
-    if(operacao != "=" ){ 
-        if(op1 == ""){
-            numeral1 = valorDoDisplay;
-            op1 = operacao ;
-            document.getElementById('result').innerHTML = "";
-            console.log("Valor 1",numeral1 + op1);
-        }else{
-            numeral2 = valorDoDisplay;
-            op2 = operacao ;
-            document.getElementById('result').innerHTML = "";
-            //Test de console
-            console.log("Valor 2",numeral1 + op1);
-
-            numeral1 = calc(numeral1, op1, numeral2);
-            op1 = op2;
-            numeral2 = "";
-            document.getElementById('result').innerHTML = "";
-            //Test de console
-            console.log("Valor 1",numeral1 + op1);
-        }
-
+        function isDigito(str){
+        return /^\d+$/.test(str);
     }
-    if(operacao == "="){
-        numeral2 = valorDoDisplay;
-        resultado = calc(numeral1, op1, numeral2);
-        document.getElementById('result').innerHTML = resultado;
-        //Test de console
-        console.log("resultado",calc(numeral1, op1, numeral2));
-        numeral1 = resultado;
-        op1 = "";
-       numeral2 = "";
-        op2 = "";
-
-    }
-}
     </script>
 </body>
 

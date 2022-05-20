@@ -1,5 +1,5 @@
 const functionDivision = async(...variableNumber) => {
-    return variableNumber.reduce((totalCalculation, currentValue) => (totalCalculation / currentValue).toFixed(4));
+    return variableNumber.reduce((totalCalculation, currentValue) => (totalCalculation / currentValue));
 }
 
 module.exports = functionDivision;
