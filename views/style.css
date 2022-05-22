@@ -1,0 +1,94 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ff9053;
+}
+
+.titulo {
+    margin-top: 20px;
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.titulo p {
+    padding: 2px;
+}
+
+.titulo-texto {
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-family: Merriweather;
+    font-weight: bold;
+}
+
+.teste {
+    background-color: #fff;
+    color: #fff;
+}
+
+.fundo {
+    background-color: #ff9053;
+    height: 100vh;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+}
+
+.calculadora {
+    position: absolute;
+    background-color: rgba(4, 56, 77, 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.botao {
+    border-bottom-left-radius: 23px;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    margin: 3px;
+    background-color: rgb(31, 31, 31);
+    border: none;
+    color: #fff;
+    transition: .5s;
+}
+
+.botao:hover {
+    border-radius: 23px;
+    background-color: black;
+}
+
+#resultado {
+    background-color: white;
+    width: 155px;
+    height: 30px;
+    margin: 5px;
+    font-size: 25px;
+    color: black;
+    text-align: right;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.mostrador {
+    display: flex;
+    align-items: center;
+
+}

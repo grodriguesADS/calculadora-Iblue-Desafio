@@ -17,7 +17,7 @@ exports.soma = async (req, res) => {
     const resultadoSomar = functionSum(numeroUm, numeroDois); 
     const dadoResultado = await resultadoSomar;
     console.log(dadoResultado)
-    res.send(JSON.stringify(dadoResultado));
+    res.send(JSON.stringify(parseFloat(dadoResultado.toFixed(1))));
 }
 
 exports.subtracao = async (req, res) => {

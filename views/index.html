@@ -7,25 +7,57 @@
     <title>Calculadora</title>
     <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400;1,700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
         }
 
-        .titulo{
-            transform: rotate(45deg);
+        body {
+            background-color: #ff9053;
         }
+
+        .titulo {
+            margin-top: 40px;
+            color: #fff;
+
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 40px;
+
+        }
+
+        .titulo p {
+            padding: 2px;
+        }
+
+        .titulo-texto {
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            font-family: Merriweather;
+            font-weight: bold;
+        }
+
+        .teste {
+            background-color: #fff;
+            color: #fff;
+        }
+
         .fundo {
             background-color: #ff9053;
             height: 100vh;
             color: #fff;
             font-family: Arial, Helvetica, sans-serif;
             text-align: center;
+
         }
 
         .calculadora {
             position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(4, 56, 77, 0.8);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -34,6 +66,7 @@
         }
 
         .botao {
+            border-bottom-left-radius: 23px;
             width: 50px;
             height: 50px;
             font-size: 25px;
@@ -42,9 +75,11 @@
             background-color: rgb(31, 31, 31);
             border: none;
             color: #fff;
+            transition: .5s;
         }
 
         .botao:hover {
+            border-radius: 23px;
             background-color: black;
         }
 
@@ -57,80 +92,45 @@
             color: black;
             text-align: right;
             padding: 5px;
+            border-radius: 10px;
         }
-        .mostrador{
+
+        .mostrador {
             display: flex;
-        }@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-        * {
-            margin: 0;
-            padding: 0;
-        }
+            align-items: center;
 
-        .titulo{
-            transform: rotate(45deg);
-        }
-        .fundo {
-            background-color: #ff9053;
-            height: 100vh;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-        }
-
-        .calculadora {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 15px;
-            padding: 15px;
-        }
-
-        .botao {
-            width: 50px;
-            height: 50px;
-            font-size: 25px;
-            cursor: pointer;
-            margin: 3px;
-            background-color: rgb(31, 31, 31);
-            border: none;
-            color: #fff;
-        }
-
-        .botao:hover {
-            background-color: black;
-        }
-
-        #resultado {
-            background-color: white;
-            width: 155px;
-            height: 30px;
-            margin: 5px;
-            font-size: 25px;
-            color: black;
-            text-align: right;
-            padding: 5px;
-        }
-        .mostrador{
-            display: flex;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
+    <div class="titulo">
+        <p style=" transform: rotate(-15deg);" class="fa-solid fa-3"></p>
+        <p style=" transform: rotate(-2deg);">+</p>
+        <p style=" transform: rotate(20deg);" class="fa-solid fa-6"></p>
+        <p style=" transform: rotate(-20deg);">x</p>
+        <p style=" transform: rotate(10deg);" class="fa-solid fa-9"></p>
+        <p style=" transform: rotate(-10deg);">=</p>
+        <p class="titulo-texto">Matemática</p>
+        <p style=" transform: rotate(-10deg);">=</p>
+        <p style=" transform: rotate(-15deg);" class="fa-solid fa-8"></p>
+        <p style=" transform: rotate(-2deg);">+</p>
+        <p style=" transform: rotate(20deg);" class="fa-solid fa-2"></p>
+        <p style=" transform: rotate(-20deg);">x</p>
+        <p style=" transform: rotate(10deg);" class="fa-solid fa-7"></p>
+    </div>
+
     <div class="fundo">
-        <div class="titulo">
-            <i class="fa-solid fa-3"></i>
-        </div>
+
         <div class="calculadora">
             <h1>Calculadora</h1>
-           <div class="mostrador">
-            <p id="resultado"></p>
-            <td><button class="botao" onclick="back()"><</button></td>
-           </div>
-            
+            <div class="mostrador">
+                <p id="resultado"></p>
+                <td><button class="botao" onclick="back()"><</button>
+                </td>
+            </div>
+
             <table>
                 <tr>
                     <td><button class="botao" onclick="clean()">C</button></td>
@@ -150,14 +150,14 @@
                     <td><button class="botao" onclick="insert('6')">6</button></td>
                     <td><button class="botao" onclick="insert('+' , 'http://localhost:3000/sum')">+</button></td>
 
-            
+
                 </tr>
                 <tr>
                     <td><button class="botao" onclick="insert('1')">1</button></td>
                     <td><button class="botao" onclick="insert('2')">2</button></td>
                     <td><button class="botao" onclick="insert('3')">3</button></td>
                     <td><button class="botao" onclick="insert('√', 'http://localhost:3000/raiz')">√</button></td>
-                   
+
 
                 </tr>
                 <tr>
@@ -173,78 +173,84 @@
             'numeroUm': '',
             'numeroDois': ''
         }
-
         var operacoes = [];
-        var resultadoPost = '';
 
-
-         function insert(num, rota)
-        {
-            var numero = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = numero + num;
-
+        function insert(numeroRecebido, rota) {
+            if (operacoes[1] === undefined) {
+                var numeroDoDisplay = document.getElementById('resultado').innerHTML;
+                document.getElementById('resultado').innerHTML = numeroDoDisplay + numeroRecebido;
+            } else {
+                document.getElementById('resultado').innerHTML = 'Erro'
+            }
             if (rota) {
                 operacoes.push(rota);
             }
         }
-        function clean()
-        {
+        function clean() {
             document.getElementById('resultado').innerHTML = "";
             corpo = {
-            'numeroUm': '',
-            'numeroDois': ''
+                'numeroUm': '',
+                'numeroDois': ''
             }
             operacoes = [];
-            resultadoPost = '';
 
         }
-        function back()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
-        }
-        function calcular()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            var valor = '';
-            
-           
-            for (var i = 0 ; i < resultado.length; i++) {
-                var indice = resultado.charAt(i)
-                console.log(indice)
-                console.log(isDigito(indice))
-                if(isDigito(indice) === true) {
-                    valor += indice;
-                }
-                else {
-                    corpo.numeroUm = valor
-                    valor = ''
-                }
-                corpo.numeroDois = valor;
+        function back() {
+            var resultadoDisplay = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultadoDisplay.substring(0, resultadoDisplay.length - 1);
+            if (isDigito(resultadoDisplay) === false && resultadoDisplay != '.') {
+                operacoes.pop(0);
             }
 
-            mandarOperacao(operacoes[0], corpo);  
-            operacoes.pop(0);
+        }
+        function calcular() {
+            var resultadoDisplay = document.getElementById('resultado').innerHTML;
+            var valor = '';
 
 
+            if (resultadoDisplay) {
+                var ultimoIndice = resultadoDisplay.charAt(resultadoDisplay.length - 1);
+
+                if (isDigito(ultimoIndice) === false && ultimoIndice != '%' && ultimoIndice != '√') {
+                    document.getElementById('resultado').innerHTML = 'Erro'
+                } else {
+                    for (var i = 0; i < resultadoDisplay.length; i++) {
+                        var indice = resultadoDisplay.charAt(i)
+
+                        if (isDigito(indice) === true || indice === '.') {
+                            valor += indice;
+                        }
+                        else {
+                            corpo.numeroUm = valor
+                            valor = ''
+                        }
+                        corpo.numeroDois = valor;
+                    }
+
+                    mandarOperacao(operacoes[0], corpo);
+                    operacoes.pop(0);
+                }
+
+            } else {
+                document.getElementById('resultado').innerHTML = 'Erro'
+            }
         }
         function mandarOperacao(url, body) {
-            console.log("Body=", body)
-            let request = new XMLHttpRequest()
-            request.open("POST", url, true)
-            request.setRequestHeader("Content-type", "application/json")
-            request.send(JSON.stringify(body))
-            request.onload = function () {
-                console.log(this.responseText)
-                resultadoPost = this.responseText
-                document.getElementById('resultado').innerHTML = resultadoPost;
-                console.log(resultadoPost)
+            if (url === undefined) {
+                document.getElementById('resultado').innerHTML = 'Erro'
+            } else {
+                let request = new XMLHttpRequest()
+                request.open("POST", url, true)
+                request.setRequestHeader("Content-type", "application/json")
+                request.send(JSON.stringify(body))
+                request.onload = function () {
+                    document.getElementById('resultado').innerHTML = this.responseText.replace('.', ',');
                 }
-                return request.responseText;
+            }
         }
-        function isDigito(str){
-        return /^\d+$/.test(str);
-    }
+        function isDigito(indice) {
+            return /^\d+$/.test(indice);
+        }
     </script>
 </body>
 
