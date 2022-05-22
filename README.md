@@ -137,7 +137,7 @@ Segue a documentação dos testes:
   Teste da função raiz quadrada:
     1° teste: Somente um parametro
       ✔ Recebendo somente um parametro
-    1° teste: Somente um parametro que retorna um numero decimal
+    2° teste: Somente um parametro que retorna um numero decimal
       ✔ Recebendo somente um parametro que retorna decimal
 
   Teste da função soma:
