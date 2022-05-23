@@ -46,7 +46,7 @@ npm start
 
 Ao final o console estará com a seguinte mensagem: 
 
-```
+```bash
 > calculadora-iblue-desafio@1.0.0 start
 > node index.js
 
