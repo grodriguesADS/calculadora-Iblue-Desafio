@@ -195,7 +195,7 @@ Segue a documentação dos testes:
 
 Feito por Guilherme Rodrigues 👋🏽 Entre em contato!
 
- <a href="https://www.linkedin.com/in/guilherme-rodrigues-684813222/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+ <a href="https://www.linkedin.com/in/g-rodrigue-s/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 
 
 
